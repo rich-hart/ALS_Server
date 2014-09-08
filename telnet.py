@@ -53,8 +53,13 @@ if __name__ == "__main__":
                     #print data
                     message = re.split('<.*> ',data)
                     message = message.pop()
-                    for c in message:
-                        ser.write(c)
+                    if(message[0]=='`'):
+                        ser.write('`')
+                    elif(message[0]=='~'):
+                        ser.write('~')
+                    else:
+                        for c in message:
+                            ser.write(c)
                     #sys.stdout.write(data)
                     prompt()
              
