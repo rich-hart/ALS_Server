@@ -2,6 +2,7 @@
 import socket, select, string, sys
 import serial # if you have not already done so
 import time
+import re
 def prompt() :
     sys.stdout.write('<You> ')
     sys.stdout.flush()
@@ -50,7 +51,9 @@ if __name__ == "__main__":
                     sys.exit()
                 else :
                     #print data
-                    for c in data:
+                    message = re.split('<.*> ',data)
+                    message = message.pop()
+                    for c in message:
                         ser.write(c)
                     #sys.stdout.write(data)
                     prompt()
